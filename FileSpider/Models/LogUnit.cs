@@ -1,6 +1,6 @@
 ﻿namespace FileSpider.Models;
 
-public record LogUnit
+public class LogUnit
 {
     public int Position { get; init; }
     public string SHA { get; init; }

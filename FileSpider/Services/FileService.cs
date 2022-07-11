@@ -8,9 +8,10 @@ public class FileService : IFileService
     private readonly IEndService _endService;
     private readonly IQueueService _queueService;
 
-    public FileService(IQueueService queueService)
+    public FileService(IQueueService queueService, IEndService endService)
     {
         _queueService = queueService;
+        _endService = endService;
     }
 
     // <inheritdoc />
@@ -31,7 +32,7 @@ public class FileService : IFileService
             for (var i = 0; i < ThreadConstants.DataCoefficient * threadCount; i++)
             {
                 var buffer = new byte[blockSize];
-                var readSize = fileStream.Read(buffer, count * blockSize, blockSize);
+                var readSize = fileStream.Read(buffer, 0, blockSize);
                 if (readSize == 0)
                 {
                     isWorking = false;
@@ -45,6 +46,7 @@ public class FileService : IFileService
                     Data = buffer
                 };
                 _queueService.EnqueueFileUnit(unit);
+
                 count++;
             }
         }

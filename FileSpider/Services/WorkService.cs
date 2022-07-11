@@ -36,7 +36,7 @@ public class WorkService : IWorkService
             {
                 isWork = false;
                 if (!_endService.IsFileEnd()) continue;
-                _endService.SendEnd();
+
                 isWork = false;
             }
             else
@@ -50,6 +50,8 @@ public class WorkService : IWorkService
                 _queueService.EnqueueLogUnit(log);
             }
         }
+
+        _endService.SendEnd();
     }
 
     private static string ComputeSha256Hash(byte[] data, HashAlgorithm sha256Hash)

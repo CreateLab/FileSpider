@@ -20,12 +20,20 @@ class LogService : ILogService
 
     private void Log()
     {
-        while (!_endService.IsEnd())
+        var isWorking = true;
+        while (isWorking)
         {
             var log = _queueService.DequeueLogUnit();
             if (log != null)
             {
                 Console.WriteLine("Position: {0} SHA {1}", log.Position, log.SHA);
+            }
+            else
+            {
+                if (_endService.IsEnd())
+                {
+                    isWorking = false;
+                }
             }
         }
     }
