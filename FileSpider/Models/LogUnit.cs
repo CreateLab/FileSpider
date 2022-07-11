@@ -3,5 +3,5 @@
 public record LogUnit
 {
     public int Position { get; init; }
-    public int SHA { get; init; }
+    public string SHA { get; init; }
 }

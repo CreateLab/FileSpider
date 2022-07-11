@@ -10,7 +10,3 @@ public interface IFileService
     /// <returns></returns>
     public void ReadFile(string filePath, int blockSize, int threadCount);
 }
-
-class FileService : IFileService
-{
-}

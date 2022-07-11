@@ -4,7 +4,3 @@ public interface IWorkService
 {
     void StartWork(int threadCount);
 }
-
-class WorkService : IWorkService
-{
-}
